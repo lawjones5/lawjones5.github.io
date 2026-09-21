@@ -255,8 +255,8 @@ a:hover {
 }
 
 .social-pill svg {
-  width: 17px;
-  height: 17px;
+  width: 20px;
+  height: 20px;
   fill: currentColor;
   flex-shrink: 0;
 }
