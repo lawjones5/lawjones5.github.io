@@ -1,11 +1,11 @@
 # Lawrence Jones - Personal & Professional Website
 
-Personal website for **Lawrence Jones**, PhD Researcher at the **University of Sheffield**.
+ **Lawrence Jones** personal website, PhD Researcher at the **University of Sheffield**.
 Built with clean HTML5, minimalist CSS, and a Markdown repository system for GitHub Pages.
 
 ---
 
-## 🎨 Color Palette
+## Color Palette
 
 The site's visual theme uses the following custom palette:
 
@@ -20,7 +20,7 @@ The site's visual theme uses the following custom palette:
 
 ---
 
-## 📁 Repository Structure
+## Repository Structure
 
 ```
 lawjones.github.io/
@@ -48,7 +48,7 @@ lawjones.github.io/
 
 ---
 
-## ✍️ How to Add New Posts
+## How to Add New Posts
 
 To create a new post, simply add a new `.md` file inside the appropriate folder (`content/projects/`, `content/papers/`, or `content/updates/`) with YAML frontmatter at the top:
 
@@ -75,7 +75,7 @@ This automatically updates `posts.json`.
 
 ---
 
-## 🌐 Local Preview & Deployment
+## Local Preview & Deployment
 
 ### Local Preview
 You can preview the site locally using Python's built-in HTTP server:
@@ -83,7 +83,3 @@ You can preview the site locally using Python's built-in HTTP server:
 py -m http.server 8000
 ```
 Then open `http://localhost:8000` in your browser.
-
-### Deploying to GitHub Pages
-Push your repository to GitHub (`main` branch). GitHub Pages will automatically host your site at:
-`https://lawjones.github.io`

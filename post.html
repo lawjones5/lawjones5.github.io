@@ -10,6 +10,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
   <!-- Marked.js for fast client-side markdown rendering -->
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <!-- KaTeX for math rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -280,6 +284,8 @@ Key milestones reached this month:
       return html;
     }
 
+    // Math is rendered with KaTeX auto-render after the body HTML is set (see below)
+
     async function loadPost() {
       const loadingEl = document.getElementById('loading');
       const postViewEl = document.getElementById('post-view');
@@ -334,6 +340,22 @@ Key milestones reached this month:
         : simpleMarkdownFallback(markdown);
 
       document.getElementById('post-body').innerHTML = parsedBody;
+
+      // Typeset math ($...$ inline, $$...$$ display) with KaTeX auto-render.
+      // Wait for window load: the deferred auto-render script may not have
+      // executed yet when a cached fetch resolves instantly.
+      if (document.readyState !== 'complete') {
+        await new Promise(res => window.addEventListener('load', res, { once: true }));
+      }
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.getElementById('post-body'), {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '$', right: '$', display: false }
+          ],
+          throwOnError: false
+        });
+      }
 
       // Show content
       loadingEl.style.display = 'none';

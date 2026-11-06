@@ -27,7 +27,7 @@
 
   --accent-blue: #6e9dff;
   --accent-mint: #6effd6;
-  --accent-amber: #ffcd42;
+  --accent-amber: #e264e2;
   
   --max-width: 880px;
   --radius: 8px;
@@ -78,9 +78,9 @@ body::before {
 }
 
 /* Header & Navigation */
-header {
+body > header {
   border-bottom: 1px solid var(--border-subtle);
-  background: rgba(0, 39, 43, 0.95);
+  background: rgba(0, 39, 43, 0.6);
   backdrop-filter: blur(8px);
   position: sticky;
   top: 0;
@@ -408,6 +408,20 @@ a:hover {
   height: 22px;
 }
 
+/* Artwork inside the feature chips is optically sized, not uniformly sized:
+   the magnet is a near-square symbol (0.92:1 ink), the CO2 lockup is wide
+   lettering (2.1:1 ink) with heavy solid strokes, so it needs a larger box
+   to read at the same visual weight. Tuned by matching rasterised ink area. */
+.feature-icon .icon-mark {
+  width: 28px;
+  height: 28px;
+}
+
+.feature-icon .icon-wordmark {
+  width: 32px;
+  height: 32px;
+}
+
 .feature-title {
   margin: 0.2rem 0 0 0;
   font-size: 1.28rem;
@@ -418,6 +432,117 @@ a:hover {
   margin: 0 0.4rem 0.6rem 0;
   font-size: 0.98rem;
   flex: 1;
+}
+
+/* --- Research Focus hierarchy -------------------------------------------
+   The two programmes are deliberately not equal. MHD is the doctoral
+   programme, sCO2 a parallel interest, so the column ratio, card chrome,
+   icon chip and type scale all step down from primary to secondary. */
+
+.section-lead {
+  margin: 0.5rem 0 0;
+  max-width: 60ch;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+/* Research Focus: primary (MHD) full width, secondary (sCO2) stacked beneath it. */
+.card-grid:has(> .feature-primary) {
+  grid-template-columns: 1fr;
+  align-items: stretch;
+}
+
+.feature-label {
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.6rem;
+}
+
+/* Primary — MHD: the weight of the page sits here. */
+.feature-primary {
+  padding: 1.3rem 1.9rem 1.5rem;
+  border: 1px solid rgba(110, 157, 255, 0.32);
+  background:
+    linear-gradient(160deg, rgba(110, 157, 255, 0.09), transparent 58%),
+    linear-gradient(160deg, rgba(52, 28, 28, 0.78), rgba(52, 28, 28, 0.45));
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+}
+
+.feature-primary:hover {
+  border-color: rgba(110, 157, 255, 0.5);
+}
+
+.feature-primary .feature-label {
+  color: var(--accent-blue);
+}
+
+.feature-primary .feature-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+}
+
+.feature-primary .icon-mark {
+  width: 34px;
+  height: 34px;
+}
+
+.feature-primary .feature-title {
+  font-size: 1.52rem;
+  line-height: 1.26;
+}
+
+.feature-primary .feature-desc {
+  font-size: 1rem;
+  max-width: 46ch;
+}
+
+/* Secondary — sCO2: quieter chrome, smaller everything, no hover flare. */
+.feature-secondary {
+  padding: 1.3rem 1.2rem 1.2rem;
+  border-color: rgba(100, 101, 54, 0.26);
+  background: rgba(52, 28, 28, 0.2);
+}
+
+.feature-secondary::before {
+  display: none;
+}
+
+.feature-secondary:hover {
+  border-color: rgba(100, 101, 54, 0.42);
+  background: rgba(52, 28, 28, 0.22);
+  box-shadow: none;
+}
+
+.feature-secondary .feature-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  border-color: rgba(110, 157, 255, 0.2);
+  background: rgba(110, 157, 255, 0.06);
+}
+
+.feature-secondary .icon-wordmark {
+  width: 25px;
+  height: 25px;
+}
+
+.feature-secondary .feature-title {
+  font-size: 1.02rem;
+  color: rgba(245, 242, 233, 0.82);
+}
+
+.feature-secondary .feature-desc {
+  font-size: 0.87rem;
+  color: rgba(244, 247, 245, 0.7);
+}
+
+.feature-secondary .tag {
+  font-size: 0.68rem;
+  padding: 0.15rem 0.45rem;
 }
 
 
@@ -609,6 +734,12 @@ footer {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.2rem;
+  }
+  .feature-primary {
+    padding: 1.3rem 1.3rem 1.2rem;
+  }
+  .feature-primary .feature-title {
+    font-size: 1.32rem;
   }
 }
 
