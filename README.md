@@ -38,12 +38,8 @@ lawjones.github.io/
 │       └── main.js         # Post card loader & rendering logic
 └── content/
     ├── projects/           # Markdown files for projects
-    │   ├── chapsim2-mhd.md
-    │   └── sco2-power-cycles.md
     ├── papers/             # Markdown files for papers
-    │   └── dns-liquid-metal-mhd.md
     └── updates/            # Markdown files for general updates
-        └── phd-research-update.md
 ```
 
 ---
